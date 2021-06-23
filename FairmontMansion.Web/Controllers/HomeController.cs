@@ -10,6 +10,8 @@ namespace FairmontMansion.Web.Controllers
     {
         public ActionResult Index()
         {
+
+            ViewBag.DateTime = DateTime.Now.ToString();
             return View();
         }
 
