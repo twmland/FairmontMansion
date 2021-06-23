@@ -1,12 +1,17 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - 我的 ASP.NET 應用程式</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src='https://unpkg.com/vue@3'></script>
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -35,9 +40,53 @@
             <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 應用程式</p>
         </footer>
     </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    @*@Scripts.Render("~/bundles/jquery") --> *@
+    @*@Scripts.Render("~/bundles/bootstrap")-->*@
     @RenderSection("scripts", required: false)
+    @*
+     <script>
+            var vueApp;
+            $(document).ready(
+                function () {
+                    vueApp = Vue.createApp(
+                        {
+                            //data
+                            data() {
+                                return {
+                                    cnt: 1
+                                }
+                            },
+                            // methods
+                            methods: {
+                                test() { window.alert(this.myMessage) },
+                                abc() { this.test()}
+                            },
+                            // computed
+                            computed:{
+                                myMessage: {
+                                    get() {
+                                        return this.cnt;
+                                    },
+                                    set(val) {
+                                        this.cnt = this.cnt+val;
+                                    }
+                                }
+                              }
+                            //------
+                        }
+                    ).mount("#app")
+                }
+            );
+        </script>
+
+        <div id="app">
+            <input v-model="cnt" /><br/>
+            <a href="http://www.google.com" @@click.prevent="abc()">Test</a>
+
+            <div id="d" class="btn btn-primary" @@click="myMessage=1">
+                this is a book
+            </div>
+        </div>
+      *@
 </body>
 </html>
